@@ -50,10 +50,20 @@ class App extends Component {
 
 
   render() {
+
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1x solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
        Names and Ages
-       <button onClick = {this.switchNameHandler.bind(this,"AkhilRao")}> Switch name </button>
+       <button style = {style}
+               onClick = {this.switchNameHandler.bind(this,"AkhilRao")}> Switch name </button>
        <Person name= {this.state.persons[0].name} age= {this.state.persons[0].age}/>
        <Person name= {this.state.persons[1].name} age= {this.state.persons[1].age}
                click= {() => this.switchNameHandler("Aki")}
