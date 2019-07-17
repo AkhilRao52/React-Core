@@ -1,75 +1,33 @@
 import React, { Component } from 'react';
-import Person from './Person/Person'
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 import './App.css';
 
 class App extends Component {
 
   state = {
-    persons: [
-      {
-        name: "Akhi",
-        age: 24
-      },
-      {
-        name: "Max",
-        age: 28
-      }
-  ]
+    userName:'Akhil' 
   }
 
-  switchNameHandler = (newName) => {
+  changeNameHandler = ()=>{
     this.setState({
-      persons: [
-        {
-          name: newName,
-          age: 24
-        },
-        {
-          name: "Max",
-          age: 27
-        }
-    ]
+      userName: 'Aki'
     })
   }
 
-  nameChangeHandler = (event) => {
+  changeNameClickHandler = (event)=>{
     this.setState({
-      persons: [
-        {
-          name: "Akhil",
-          age: 24
-        },
-        {
-          name: event.target.value,
-          age: 27
-        }
-    ]
+      userName: event.target.value
     })
   }
 
-
-
-  render() {
-
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1x solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
-
-    return (
-      <div className="App">
-       Names and Ages
-       <button style = {style}
-               onClick = {this.switchNameHandler.bind(this,"AkhilRao")}> Switch name </button>
-       <Person name= {this.state.persons[0].name} age= {this.state.persons[0].age}/>
-       <Person name= {this.state.persons[1].name} age= {this.state.persons[1].age}
-               click= {() => this.switchNameHandler("Aki")}
-               changed={this.nameChangeHandler}> He is a tutor </Person>
+  render(){
+    return(
+      <div>
+        <UserInput name={this.state.userName} click={this.changeNameHandler} change={this.changeNameClickHandler}/>
+        <UserOutput name={this.state.userName}/> 
       </div>
-    );
+    )
   }
 }
 
