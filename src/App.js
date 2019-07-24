@@ -4,6 +4,7 @@ import './App.css';
 
 class App extends Component {
 
+
   state = {
     persons: [
       {
@@ -28,7 +29,8 @@ class App extends Component {
           name: "Max",
           age: 27
         }
-    ]
+    ],
+    display: true
     })
   }
 
@@ -47,7 +49,10 @@ class App extends Component {
     })
   }
 
-
+  displayHandler = () => {
+    const doesShow = this.state.display;
+    this.setState({display:!doesShow})    
+  }
 
   render() {
 
@@ -59,15 +64,28 @@ class App extends Component {
       cursor: 'pointer'
     }
 
+    let persons = null;
+
+    if(this.state.display){
+      persons =    
+      (<div> 
+        <Person name= {this.state.persons[0].name} age= {this.state.persons[0].age}/>
+        <Person name= {this.state.persons[1].name} age= {this.state.persons[1].age}
+                click= {() => this.switchNameHandler("Aki")}
+                changed={this.nameChangeHandler}> He is a tutor 
+        </Person>
+     </div>)
+    }
+
     return (
       <div className="App">
        Names and Ages
        <button style = {style}
-               onClick = {this.switchNameHandler.bind(this,"AkhilRao")}> Switch name </button>
-       <Person name= {this.state.persons[0].name} age= {this.state.persons[0].age}/>
-       <Person name= {this.state.persons[1].name} age= {this.state.persons[1].age}
-               click= {() => this.switchNameHandler("Aki")}
-               changed={this.nameChangeHandler}> He is a tutor </Person>
+               onClick = {this.switchNameHandler.bind(this,"AkhilRao")}> Switch name 
+       </button>
+
+       <button onClick = {this.displayHandler}> Hide/Show details </button>
+       {persons}
       </div>
     );
   }
